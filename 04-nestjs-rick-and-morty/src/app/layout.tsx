@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <Navigation />  // Incluye el componente de navegación
-        <main>{children}</main>
+        <main>{children}</main>  // Aquí se muestra el contenido principal
       </body>
     </html>
   );
