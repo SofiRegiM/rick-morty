@@ -7,15 +7,15 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Rick & Morty App',
-  description: 'App for Rick & Morty characters',
+  description: 'Aplicación para personajes de Rick & Morty',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />  // Incluye el componente de navegación
-        <main>{children}</main>  // Aquí se muestra el contenido principal
+        <Navigation />  
+        <main>{children}</main>  
       </body>
     </html>
   );

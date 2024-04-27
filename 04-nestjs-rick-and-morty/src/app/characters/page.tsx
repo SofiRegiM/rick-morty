@@ -1,35 +1,41 @@
-'use client'
-import React, { useState, useEffect } from 'react';
-import Navigation from '@/components/Navigation';
+"use client";
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import CharacterList from '@/components/CharacterList';
 import { Character } from '@/components/CharacterList';
+ 
 
 const CharactersPage: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
 
-  // Inicializar personajes con un valor predeterminado o desde una fuente externa
   useEffect(() => {
-    const initialCharacters: Character[] = [
-      { id: 1, name: 'Rick Sanchez', image: 'url/to/image.jpg', isFavorite: false },
-      // Añade otros personajes según sea necesario
-    ];
-    setCharacters(initialCharacters);
+    const fetchCharacters = async () => {
+      const response = await axios.get('https://rickandmortyapi.com/api/character');
+      setCharacters(response.data.results);
+    };
+
+    fetchCharacters();
   }, []);
 
   const toggleFavorite = (id: number) => {
     const updatedCharacters = characters.map((character) =>
       character.id === id ? { ...character, isFavorite: !character.isFavorite } : character,
     );
+
     setCharacters(updatedCharacters);
+
+    const updatedFavorites = updatedCharacters.filter((character) => character.isFavorite);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));  
   };
 
   return (
     <>
-      <Navigation />
-      <h1 className="text-center text-2xl my-4">Todos los Personajes</h1>
-      <CharacterList characters={characters} onToggleFavorite={toggleFavorite} />  {/* Pasa la lista correcta */}
+      <h1 className="text-center text-2xl my-4">Todos los Personajes</h1>  
+      <CharacterList characters={characters} onToggleFavorite={toggleFavorite} />  
     </>
   );
 };
 
 export default CharactersPage;
+
