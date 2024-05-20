@@ -3,11 +3,13 @@
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended"  // Ensures ESLint and Prettier compatibility
+    "plugin:prettier/recommended", // Ensures ESLint and Prettier compatibility
+    "plugin:testing-library/react"
   ],
   "plugins": [
     "@typescript-eslint",
-    "jsx-a11y"
+    "jsx-a11y",
+    "testing-library"
   ],
   "rules": {
     // You can customize ESLint rules here. For example:
