@@ -6,24 +6,27 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    // include: ['src/**/*.test.{ts,tsx}'],
     setupFiles: 'src/helpers/setupTests.ts',
     environment: 'jsdom',
     coverage: {
-      include: ['src/components/**/*.{ts,tsx}', 'src/helpers/**/*.{ts,tsx}'],
+      include: [
+        'src/components/**/*.{ts,tsx}',
+        'src/app/character/**/*.{ts,tsx}',
+        'src/app/characters/**/*.{ts,tsx}',
+        'src/app/favorites/**/*.{ts,tsx}',
+      ],
       exclude: ['src/helpers/setupTests.ts'],
       reporter: ['html', 'text-summary'],
       thresholds: {
-        functions: 50,
-        lines: 50,
-        branches: 50,
-        statements: 50,
+        functions: 90,
+        lines: 90,
+        branches: 90,
+        statements: 90,
       },
     },
   },
   resolve: {
     alias: {
-      // add this section if you are using an alias
       '@': path.resolve(__dirname, 'src'),
     },
   },
